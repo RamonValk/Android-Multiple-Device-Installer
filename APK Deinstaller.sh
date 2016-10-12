@@ -25,7 +25,7 @@ then
         ./data/adb -s ${inputDevicesArray[$i]} shell getprop ro.product.model
          
      done
-     sleep 0.5
+     sleep 0.2
     
      echo "\n Okey, you entered $apkD as your path and you attached $deviceNMR device(s). \nIs this correct?"
      read -r -p "[y/N]" dataResponse
@@ -35,13 +35,13 @@ then
     echo "\nOkey, let's proceed.\n"
      }
     setData
-    sleep 2
+    sleep 0.2
 
     #get package name via aapt
     aaptDump=$(./data/aapt dump badging $apkD | grep package:\ name)
     echo "Getting package name from apk..."
     packageName=$(echo $aaptDump| cut -d"'" -f 2)
-    sleep 1.5
+    sleep 0.2
     echo "\nPackage name found : $packageName\n"
 
     #uninstall apk via adb
@@ -57,7 +57,7 @@ then
 
 else
     echo "\nWell bye 👋🏼  \n"
-    sleep 2.5
+    sleep 2
     exit
 fi
 

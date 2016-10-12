@@ -25,23 +25,24 @@ then
         ./data/adb -s ${inputDevicesArray[$i]} shell getprop ro.product.model
          
      done
-     sleep 0.5
+     sleep 0.2
     
-     echo "\n Okey, you entered $apkD as your path and you attached $deviceNMR device(s). \nIs this correct?"
+     echo "\nOkey, you entered $apkD as your path and you attached $deviceNMR device(s). \nIs this correct?"
      read -r -p "[y/N]" dataResponse
-    if [[ $dataResponse =~ ^[nN]$ ]]; then
+     if [[ $dataResponse =~ ^[nN]$ ]]; then
         setData
-    fi
-    echo "\nOkey, let's proceed.\n"
-     }
+     else
+    	echo "\nOkey, let's proceed.\n"
+     fi
+      }
     setData
-    sleep 2
+    sleep 0.2
 
     #get package name via aapt
     aaptDump=$(./data/aapt dump badging "$apkD" | grep package:\ name)
     echo "Getting package name from apk..."
     packageName=$(echo $aaptDump| cut -d"'" -f 2)
-    sleep 1.5
+    sleep 0.2
     echo "\nPackage name found : $packageName\n"
 
     #install apk via adb
@@ -51,7 +52,7 @@ then
         ./data/adb -s ${inputDevicesArray[$i]} install "$apkD"
         echo "\n" 
     done
-    sleep 1
+    sleep 0.5
 
     #launch app via monkey
     echo "\nOpening $packageName\n"
@@ -59,12 +60,12 @@ then
         ./data/adb -s ${inputDevicesArray[$i]} shell monkey -p "$packageName" -c android.intent.category.LAUNCHER 1
     done
     
-    sleep 2
+    sleep 1
     echo "\nWe are done here. 👋🏼  \n"
 
 else
     echo "\nWell bye 👋🏼  \n"
-    sleep 2.5
+    sleep 2
     exit
 fi
 
