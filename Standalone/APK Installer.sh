@@ -57,6 +57,7 @@ then
     #launch app via monkey
     echo "\nOpening $packageName\n"
     for (( i = 0; i < $deviceNMR; i++ )); do
+        sh isDeviceOn.sh ${inputDevicesArray[$i]} 
         ./data/adb -s ${inputDevicesArray[$i]} shell monkey -p "$packageName" -c android.intent.category.LAUNCHER 1
     done
     
@@ -69,4 +70,4 @@ else
     exit
 fi
 
-
+#floa
