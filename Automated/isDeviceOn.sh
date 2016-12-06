@@ -3,10 +3,16 @@
 
 version="0.4"
 serial=$1
-pinMode=false
+pinMode=true
 pinCode="7783" #this code is used on all connected devices. So use the same pin or remove it completely. 
 
-echo "running isDeviceOn $version ..."
+echo "running isDeviceOn version $version."
+#checking for correct use
+    if [ -z "$1" ]; then
+        echo "ERROR: No serial argument given, try using 'isDeviceOn [serial]'"
+        exit 2
+    fi
+
 echo "serial is : $serial"
 if [[ "$pinMode" == false ]]; then
 	echo "PIN Mode set to false, phones with PIN won't work."

@@ -26,7 +26,7 @@ echo "Running Multiple Device Installer version $version, by Ramon Valk."
 
      #searching for devices 
      echo "\nChecking for attached devices..."
-     inputDevicesString=$(./data/adb devices | grep -v List | grep device | perl -p -e 's/(\w+)\s.*/\1/')
+     inputDevicesString=$(./scripts/data/adb devices | grep -v List | grep device | perl -p -e 's/(\w+)\s.*/\1/')
      inputDevicesArray=(`echo ${inputDevicesString}`);
      deviceNMR=$(echo ${#inputDevicesArray[@]})
      echo "\nFound $deviceNMR device(s)!"
@@ -39,15 +39,15 @@ echo "Running Multiple Device Installer version $version, by Ramon Valk."
      echo "Device name(s) : "
      for (( i = 0; i < $deviceNMR; i++ )); do
 
-        dModel=$(./data/adb -s ${inputDevicesArray[$i]} shell getprop ro.product.model)
+        dModel=$(./scripts/data/adb -s ${inputDevicesArray[$i]} shell getprop ro.product.model)
         dModel=$(echo "${dModel//[$'\t\r\n ']}")
-        dRelease=$(./data/adb -s ${inputDevicesArray[$i]} shell getprop ro.build.version.release)
+        dRelease=$(./scripts/data/adb -s ${inputDevicesArray[$i]} shell getprop ro.build.version.release)
         dRelease=$(echo "${dRelease//[$'\t\r\n ']}")
-        dApi=$(./data/adb -s ${inputDevicesArray[$i]} shell getprop ro.build.version.sdk)
+        dApi=$(./scripts/data/adb -s ${inputDevicesArray[$i]} shell getprop ro.build.version.sdk)
         dApi=$(echo "${dApi//[$'\t\r\n ']}")
-        dSPatch=$(./data/adb -s ${inputDevicesArray[$i]} shell getprop ro.build.version.security_patch)
+        dSPatch=$(./scripts/data/adb -s ${inputDevicesArray[$i]} shell getprop ro.build.version.security_patch)
         dSPatch=$(echo "${dSPatch//[$'\t\r\n ']}")
-        dSerial=$(./data/adb -s ${inputDevicesArray[$i]} shell getprop ro.boot.serialno)
+        dSerial=$(./scripts/data/adb -s ${inputDevicesArray[$i]} shell getprop ro.boot.serialno)
         dSerial=$(echo "${dSerial//[$'\t\r\n ']}")
         echo "📱 $dModel ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖"
         echo "Connected with Android version $dRelease, Api level $dApi,\nSecurity Patch $dSPatch and Serial $dSerial"
@@ -56,35 +56,35 @@ echo "Running Multiple Device Installer version $version, by Ramon Valk."
      done
 
     #get package name via aapt
-    aaptDump=$(./data/aapt dump badging "$apkD" | grep package:\ name)
+    aaptDump=$(./scripts/data/aapt dump badging "$apkD" | grep package:\ name)
     echo "\nGetting package info from apk..."
     packageName=$(echo $aaptDump| cut -d"'" -f 2)
     echo "Package name found : $packageName"
-    sdkVersion=$(./data/aapt dump badging "$apkD" | grep sdkVersion | tr -d 'sdkVersion:' | tr -d "'")
+    sdkVersion=$(./scripts/data/aapt dump badging "$apkD" | grep sdkVersion | tr -d 'sdkVersion:' | tr -d "'")
     echo "API Level found: $sdkVersion"
 
     #install apk via adb
     echo "Checking installation requirements...\n"
     for (( i = 0; i < $deviceNMR; i++ )); do
-    	apiApp=$(./data/aapt dump badging "$apkD" | grep sdkVersion | tr -d 'sdkVersion:' | tr -d "'")
+    	apiApp=$(./scripts/data/aapt dump badging "$apkD" | grep sdkVersion | tr -d 'sdkVersion:' | tr -d "'")
     	apiApp=$(echo "${apiApp//[$'\t\r\n ']}")
-    	apiDevice=$(./data/adb -s ${inputDevicesArray[$i]} shell getprop ro.build.version.sdk)
+    	apiDevice=$(./scripts/data/adb -s ${inputDevicesArray[$i]} shell getprop ro.build.version.sdk)
     	apiDevice=$(echo "${apiDevice//[$'\t\r\n ']}")
-  		dModel=$(./data/adb -s ${inputDevicesArray[$i]} shell getprop ro.product.model)
+  		dModel=$(./scripts/data/adb -s ${inputDevicesArray[$i]} shell getprop ro.product.model)
   		dModel=$(echo "${dModel//[$'\t\r\n ']}")
   		echo "📱 $dModel"
     	if [[ "$apiApp" -le "$apiDevice" ]] 
     		then
     			echo "API Level seems lower or equal."
-    			package=$(adb -s ${inputDevicesArray[$i]} shell pm list packages $packageName)
+    			package=$(./scripts/data/adb -s ${inputDevicesArray[$i]} shell pm list packages $packageName)
     			packageCut=$(echo "$package" | grep $packageName | cut -c 9-)
     			packageCheck=$(echo "${packageCut//[$'\t\r\n ']}")
     			if [[ "$packageCheck" == "$packageName" ]]; then
     				echo "Application already installed, trying to uninstall..."
-    				./data/adb -s ${inputDevicesArray[$i]} uninstall "$packageName"
+    				./scripts/data/adb -s ${inputDevicesArray[$i]} uninstall "$packageName"
     			fi
     			echo "Installing..."
-       		    ./data/adb -s ${inputDevicesArray[$i]} install "$apkD"
+       		    ./scripts/data/adb -s ${inputDevicesArray[$i]} install "$apkD"
        	elif [[ "$apiApp" -gt "$apiDevice" ]] 
        		then
        		    echo "API Level from App seems higher, skipping installation."
@@ -99,11 +99,11 @@ echo "Running Multiple Device Installer version $version, by Ramon Valk."
     echo "\nOpening $packageName\n"
     for (( i = 0; i < $deviceNMR; i++ )); do
 
-    	apiApp=$(./data/aapt dump badging "$apkD" | grep sdkVersion | tr -d 'sdkVersion:' | tr -d "'")
+    	apiApp=$(./scripts/data/aapt dump badging "$apkD" | grep sdkVersion | tr -d 'sdkVersion:' | tr -d "'")
     	apiApp=$(echo "${apiApp//[$'\t\r\n ']}")
-    	apiDevice=$(./data/adb -s ${inputDevicesArray[$i]} shell getprop ro.build.version.sdk)
+    	apiDevice=$(./scripts/data/adb -s ${inputDevicesArray[$i]} shell getprop ro.build.version.sdk)
     	apiDevice=$(echo "${apiDevice//[$'\t\r\n ']}")
-  		dModel=$(./data/adb -s ${inputDevicesArray[$i]} shell getprop ro.product.model)
+  		dModel=$(./scripts/data/adb -s ${inputDevicesArray[$i]} shell getprop ro.product.model)
   		dModel=$(echo "${dModel//[$'\t\r\n ']}")
   		echo "📱 $dModel"
     	if [[ "$apiApp" -le "$apiDevice" ]] 
@@ -112,7 +112,7 @@ echo "Running Multiple Device Installer version $version, by Ramon Valk."
        		    if [[ "$enableIsDeviceOn" == true ]]; then
             sh isDeviceOn.sh ${inputDevicesArray[$i]} 
         fi
-        ./data/adb -s ${inputDevicesArray[$i]} shell monkey -p "$packageName" -c android.intent.category.LAUNCHER 1
+        ./scripts/data/adb -s ${inputDevicesArray[$i]} shell monkey -p "$packageName" -c android.intent.category.LAUNCHER 1
        	elif [[ "$apiApp" -gt "$apiDevice" ]] 
        		then
        		    echo "API Level from App seems higher, skipping command."

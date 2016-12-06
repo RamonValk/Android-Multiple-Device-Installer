@@ -10,7 +10,6 @@ if (file_exists($target_file)) {
     echo "Sorry, file already exists.";
     $uploadOk = 0;
 }
-
 // Allow certain file formats
 if($imageFileType != "apk" ) {
     echo "Sorry, only apk's are allowed.";
@@ -27,10 +26,9 @@ if ($uploadOk == 0) {
         echo "Sorry, there was an error uploading your file.";
     }
 }
-//shell_exec(sh scripts/mdInstaller.sh $target_file)
-
-	$output = shell_exec('sh scripts/mdInstaller.sh ' . $target_file);
-    echo "<pre>$output</pre>";
-
-
+// check if uploadOK is set to 1, if not don't do anything
+if ($uploadOk == 1) {
+       $output = shell_exec('sh scripts/mdInstaller.sh ' . $target_file);
+       echo "<pre>$output</pre>";
+    }
 ?>
