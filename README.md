@@ -1,7 +1,8 @@
 # Android-Multiple-Device-Installer
 Script voor het installeren en openen van een apk op een android device via adb.
 
-
+### sshTool
+Deze tool kan worden gebruikt om een ssh sessie met de installatie server op te zetten en automatisch een apk te pushen, de flags bedoeld voor "mdInstaller" kunnen ook met deze tool gebruikt worden omdat ze worden doorgestuurd. Begin wel altijd met de -a flag! Gebruik: tool.sh -a [apk] flags
 ### Automated
 De automatische installer voor de commandline, gebruik: "sh mdInstaller.sh [file.apk]". Kan "isDeviceOn.sh" gebruiken door deze boolean op true te zetten.
 
