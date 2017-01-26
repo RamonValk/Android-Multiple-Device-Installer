@@ -1,0 +1,15 @@
+2016-12-12T13:11:00.519582000 0.245127s notice: Recursively removing directory /Users/move4mobile/Desktop/Automated/rethinkdb_data/tmp
+2016-12-12T13:11:00.520519000 0.246067s notice: Initializing directory /Users/move4mobile/Desktop/Automated/rethinkdb_data
+2016-12-12T13:11:00.520579000 0.246124s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/move4mobile/Desktop/Automated/rethinkdb_data' did not already exist or is empty.)
+2016-12-12T13:11:00.520607000 0.246152s notice: Running rethinkdb 2.3.5 (CLANG 8.0.0 (clang-800.0.38))...
+2016-12-12T13:11:00.524475000 0.250020s notice: Running on Darwin 16.1.0 x86_64
+2016-12-12T13:11:00.524504000 0.250048s notice: Loading data from directory /Users/move4mobile/Desktop/Automated/rethinkdb_data
+2016-12-12T13:11:01.244991000 0.970536s info: Automatically using cache size of 1124 MB
+2016-12-12T13:11:01.245612000 0.971157s notice: Listening for intracluster connections on port 29015
+2016-12-12T13:11:01.246693000 0.972238s notice: Listening for client driver connections on port 28015
+2016-12-12T13:11:01.246802000 0.972346s notice: Listening for administrative HTTP connections on port 8080
+2016-12-12T13:11:01.246833000 0.972378s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2016-12-12T13:11:01.246851000 0.972395s notice: Listening on driver addresses: 127.0.0.1, ::1
+2016-12-12T13:11:01.246852000 0.972397s notice: Listening on http addresses: 127.0.0.1, ::1
+2016-12-12T13:11:01.246855000 0.972400s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-12-12T13:11:01.246868000 0.972412s notice: Server ready, "Move4Mobiles_iMac_local_qz5" 8a622366-a3f5-4324-b1b4-112b776d28da

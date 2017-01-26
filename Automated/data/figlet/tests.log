@@ -1,0 +1,172 @@
+
+Run test 001: showfigfonts output... 
+Command: ./showfigfonts
+./showfigfonts: line 39: ./figlet: No such file or directory
+ls: /*.flf: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 002: text rendering in all fonts... 
+Command: for i in fonts/*.flf; do cat tests/input.txt|./figlet -f $i; done
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 003: long text rendering... 
+Command: cat tests/longtext.txt|./figlet
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 004: left-to-right text... 
+Command: cat tests/input.txt|./figlet -L
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 005: right-to-left text... 
+Command: cat tests/input.txt|./figlet -R
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 006: flush-left justification... 
+Command: cat tests/input.txt|./figlet -l
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 007: flush-right justification... 
+Command: cat tests/input.txt|./figlet -r
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 008: center justification... 
+Command: cat tests/input.txt|./figlet -c
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 009: kerning mode... 
+Command: cat tests/input.txt|./figlet -k
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 010: full width mode... 
+Command: cat tests/input.txt|./figlet -W
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 011: overlap mode... 
+Command: cat tests/input.txt|./figlet -o
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 012: tlf2 font rendering... 
+Command: cat tests/input.txt|./figlet -f tests/emboss
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 013: kerning flush-left right-to-left mode... 
+Command: cat tests/input.txt|./figlet -klR
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 014: kerning centered right-to-left mode (slant)... 
+Command: cat tests/input.txt|./figlet -kcR -f slant
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 015: full-width flush-right right-to-left mode... 
+Command: cat tests/input.txt|./figlet -WrR
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 016: overlap flush-right mode (big)... 
+Command: cat tests/input.txt|./figlet -or -f big
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 017: tlf2 kerning flush-right mode... 
+Command: cat tests/input.txt|./figlet -kr -f tests/emboss
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 018: tlf2 overlap centered mode... 
+Command: cat tests/input.txt|./figlet -oc -f tests/emboss
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 019: tlf2 full-width flush-left right-to-left mode... 
+Command: cat tests/input.txt|./figlet -WRl -f tests/emboss
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 020: specify font directory... 
+Command: X=/var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.c0b5IDJD;cp fonts/script.flf $X/foo.flf;cat tests/input.txt|./figlet -d$X -ffoo;rm -Rf $X
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 021: paragraph mode long line output... 
+Command: cat tests/input.txt|./figlet -p -w250
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 022: short line output... 
+Command: cat tests/input.txt|./figlet -w5
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 023: kerning paragraph centered mode (small)... 
+Command: cat tests/input.txt|./figlet -kpc -fsmall
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 024: list of control files... 
+Command: ls fonts/*flc
+pass
+
+Run test 025: uskata control file... 
+Command: printf 'ABCDE'|./figlet -fbanner -Cuskata
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
+
+Run test 026: jis0201 control file... 
+Command: printf '\261\262\263\264\265'|./figlet -fbanner -Cjis0201
+./run-tests.sh: line 21: ./figlet: No such file or directory
+cmp: EOF on /var/folders/cr/1tczz2ts5x15tw782r3_l6280000gn/T/tmp.1XznO5oW
+**fail**
